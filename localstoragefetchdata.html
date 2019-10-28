@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <title>Local Storage Fetch Data</title>
+        <style>
+            .div1{
+                width: 30%;
+            }
+            form{
+                color: rgb(18, 77, 238);
+                font-size: larger;
+            }
+            input{
+                padding: 5px;
+            }
+            .div{
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="div">
+            <div class="div1">
+                <h2>Registration Form</h2>
+                <fieldset>
+                    <legend>Registration Form</legend>
+                    <form>
+                        Name <input type="text" id="name" placeholder="Enter your name"> <br><br>
+                        Email <input type="email" id="email" placeholder="Enter your email"><br><br>
+                        Mobile <input type="tel" id="mobile" placeholder="Enter your mobile"><br><br>
+                        DOB <input type="date" id="dob"><br><br>
+                        <button type="submit" onclick="registeruser()" >Register</button> &nbsp;
+                        <button type="reset">Clear</button>
+                    </form>
+                </fieldset>
+            </div>
+            
+        </div>
+
+        <div class="div2">
+            <h2>User Details</h2>
+            <table id="usertable">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Dob</th>
+                    
+                </tr>
+            </table>
+        </div>
+        <script>
+            function registeruser(){
+
+                event.preventDefault();
+
+                var username = document.getElementById('name').value;
+                var useremail = document.getElementById('email').value;
+                var usermobile = document.getElementById('mobile').value;
+                var userdob = document.getElementById('dob').value;
+
+                var userdata = {
+                    username:username, 
+                    useremail:useremail, 
+                    usermobile:usermobile, 
+                    userdob:userdob
+                }
+                if(localStorage.getItem('userdetails') == null) {
+                    localStorage.setItem('userdetails', JSON.stringify([]));
+                    var userData=JSON.parse(localStorage.getItem('userdetails'));
+                    console.log('userData', userData);
+                    userData.push(JSON.stringify(userdata));
+                    var arraytostr = JSON.stringify(userData);
+                    console.log('arraytostr', arraytostr);
+                    localStorage.setItem('userdetails', arraytostr);
+                }
+                else
+                {
+                    var userDatailsArray = JSON.parse(localStorage.getItem('userdetails'));
+                    userDatailsArray.push(JSON.stringify(userdata));
+                    console.log(userDatailsArray);
+                    localStorage.setItem('userdetails', JSON.stringify(userDatailsArray));
+                }
+
+                var table = document.getElementById("usertable");
+                var row = table.insertRow();
+                var uname = row.insertCell(0);
+                var uemail = row.insertCell(1);
+                var unum=row.insertCell(2);
+                var udob=row.insertCell(3);
+                uname.innerHTML = username;
+                uemail.innerHTML = useremail;
+                unum.innerHTML=usermobile;
+                udob.innerHTML=userdob;
+
+            }
+        </script>
+    </body>
+</html>
