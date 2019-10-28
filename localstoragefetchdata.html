@@ -15,6 +15,19 @@
             .div{
                 width: 100%;
             }
+            th{
+                color: rgb(110, 63, 240);
+                border: 1px solid;
+            }
+            tr, table, th{
+                font-size: large;
+                border: 1px solid black;
+            }
+            th, td {
+                padding: 15px;
+                text-align: left;
+            }
+            
         </style>
     </head>
     <body>
@@ -83,14 +96,14 @@
 
                 var table = document.getElementById("usertable");
                 var row = table.insertRow();
-                var uname = row.insertCell(0);
-                var uemail = row.insertCell(1);
-                var unum=row.insertCell(2);
-                var udob=row.insertCell(3);
-                uname.innerHTML = username;
-                uemail.innerHTML = useremail;
-                unum.innerHTML=usermobile;
-                udob.innerHTML=userdob;
+                var u_name = row.insertCell(0);
+                var u_email = row.insertCell(1);
+                var u_mob=row.insertCell(2);
+                var u_dob=row.insertCell(3);
+                u_name.innerHTML = username;
+                u_email.innerHTML = useremail;
+                u_mob.innerHTML = usermobile;
+                u_dob.innerHTML = userdob;
 
             }
         </script>
